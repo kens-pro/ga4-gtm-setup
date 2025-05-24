@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LP計測設定フロー</title>
+  <title>LP計測設定フロー＋GitHubアップ手順</title>
   <style>
     body {
       font-family: 'Noto Sans JP', sans-serif;
@@ -45,10 +45,16 @@
       border-radius: 0.25rem;
       font-weight: bold;
     }
+    code {
+      background: #f0f0f0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <h1>LP計測フロー（電話クリック & フォーム送信）</h1>
+  <h1>LP計測フロー（電話クリック & フォーム送信＋GitHub公開）</h1>
   <div class="flow-container">
     <div class="step">
       <h2>① GTMスニペットをLPに埋め込む</h2>
@@ -81,6 +87,22 @@
     <div class="step">
       <h2>⑧ LPのHTML構成</h2>
       <p>電話リンク：<code>&lt;a href="tel:077-XXX-XXXX"&gt;電話する&lt;/a&gt;</code><br>フォーム送信完了後、<code>/thanks/</code> にリダイレクト。</p>
+    </div>
+    <div class="step">
+      <h2>⑨ Gitの初期化</h2>
+      <p>VS Code ターミナルで以下を実行：<br><code>git init</code></p>
+    </div>
+    <div class="step">
+      <h2>⑩ ファイルの追加と初回コミット</h2>
+      <p><code>git add .</code><br><code>git commit -m "Initial commit for GA4GTM setup guide"</code></p>
+    </div>
+    <div class="step">
+      <h2>⑪ GitHubリポジトリ作成</h2>
+      <p>GitHubで「New Repository」を作成。<br>例：<code>ga4-gtm-setup</code><br>READMEはチェックせず「Create repository」。</p>
+    </div>
+    <div class="step">
+      <h2>⑫ GitHubと接続してプッシュ</h2>
+      <p><code>git branch -M main</code><br><code>git remote add origin https://github.com/kens-pro/ga4-gtm-setup.git</code><br><code>git push -u origin main</code></p>
     </div>
   </div>
 </body>
