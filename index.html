@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LP計測設定フロー</title>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f9f9fc;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #2a2a6e;
+    }
+    .flow-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .step {
+      background: #fff;
+      border-left: 6px solid #2a2a6e;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    .step h2 {
+      font-size: 1.25rem;
+      margin: 0 0 0.5rem;
+      color: #2a2a6e;
+    }
+    .step p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .highlight {
+      background: #eef3ff;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>LP計測フロー（電話クリック & フォーム送信）</h1>
+  <div class="flow-container">
+    <div class="step">
+      <h2>① GTMスニペットをLPに埋め込む</h2>
+      <p>&lt;head&gt;と&lt;body&gt;に <span class="highlight">GTM-WXXXXXXX</span> を挿入。</p>
+    </div>
+    <div class="step">
+      <h2>② GoogleタグをGTMで追加</h2>
+      <p>GA4測定ID（例：<span class="highlight">G-HTB57PM668</span>）を設定。<br>トリガーは <span class="highlight">All Pages</span>。</p>
+    </div>
+    <div class="step">
+      <h2>③ 電話クリックタグを作成</h2>
+      <p>イベント名：<span class="highlight">tel_click_6mpiano</span><br>クリックURLに <span class="highlight">tel:</span> を含むリンクが対象。</p>
+    </div>
+    <div class="step">
+      <h2>④ 電話クリックトリガー設定</h2>
+      <p><span class="highlight">Click URL に tel:</span> ＋ <span class="highlight">Page URL に /6mpianoLP/</span> を含む条件で限定。</p>
+    </div>
+    <div class="step">
+      <h2>⑤ フォーム送信タグを作成</h2>
+      <p>イベント名：<span class="highlight">inquiry_complete</span><br>サンクスページ遷移で発火。</p>
+    </div>
+    <div class="step">
+      <h2>⑥ サンクスページ用トリガー</h2>
+      <p><span class="highlight">Page URL に /thanks/</span> を含む条件を指定。</p>
+    </div>
+    <div class="step">
+      <h2>⑦ GA4でコンバージョン設定</h2>
+      <p><span class="highlight">inquiry_complete</span> と <span class="highlight">tel_click_6mpiano</span> に ⭐ をつけて登録。</p>
+    </div>
+    <div class="step">
+      <h2>⑧ LPのHTML構成</h2>
+      <p>電話リンク：<code>&lt;a href="tel:077-XXX-XXXX"&gt;電話する&lt;/a&gt;</code><br>フォーム送信完了後、<code>/thanks/</code> にリダイレクト。</p>
+    </div>
+  </div>
+</body>
+</html>
