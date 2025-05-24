@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LP計測設定フロー＋GitHubアップ手順</title>
+  <title>LP計測＋広告連携フロー</title>
   <style>
     body {
       font-family: 'Noto Sans JP', sans-serif;
@@ -54,7 +54,7 @@
   </style>
 </head>
 <body>
-  <h1>LP計測フロー（電話クリック & フォーム送信＋GitHub公開）</h1>
+  <h1>LP計測 + GitHub公開 + 広告連携フロー（シンプル＆正確）</h1>
   <div class="flow-container">
     <div class="step">
       <h2>① ローカルフォルダの準備</h2>
@@ -103,6 +103,28 @@
     <div class="step">
       <h2>⑫ GA4でコンバージョン設定</h2>
       <p><span class="highlight">inquiry_complete</span> と <span class="highlight">tel_click_6mpiano</span> に ⭐ をつけて登録。</p>
+    </div>
+    <div class="step">
+      <h2>⑬ Google広告とGA4を連携</h2>
+      <p>Google広告の「リンクアカウント」からGA4を接続。<br>GA4側でも承認を忘れずに。</p>
+    </div>
+    <div class="step">
+      <h2>⑭ GA4のコンバージョンを広告にインポート</h2>
+      <p>広告管理画面 → コンバージョン → GA4からインポート →<br><code>inquiry_complete</code>と<code>tel_click_6mpiano</code> を選択。</p>
+    </div>
+    <div class="step">
+      <h2>⑮ 広告キャンペーンと連携</h2>
+      <p>キャンペーン設定で、使用するコンバージョンアクションに<br><code>inquiry_complete</code>や<code>tel_click_6mpiano</code>を指定。</p>
+    </div>
+    <div class="step">
+      <h2>⑯ 正確な計測のための確認ポイント</h2>
+      <p>
+        - イベント名をLPごとに明示（例：<code>tel_click_6salelp</code>）<br>
+        - GTMトリガー条件に「対象LPのURLを含む」制限を設定<br>
+        - ⭐マークをつけるのは<code>inquiry_complete</code>のように意図的に設計されたイベントのみ<br>
+        - DebugViewでイベントの発火とページを確認<br>
+        - GA4プロパティは可能な限り一元化（<code>G-HTB57PM668</code>）
+      </p>
     </div>
   </div>
 </body>
